@@ -1,5 +1,5 @@
 class Pingly
-  VERSION = '0.1.0'
+  VERSION = '0.2.0'
 
   attr_accessor :host, :timeout, :raw_response
 
@@ -8,7 +8,7 @@ class Pingly
       p = new(host)
       p.ping!
 
-      if p.packet_loss > 0
+      if p.packet_loss > 0.25
         yield if block_given?
       end
 
