@@ -8,7 +8,7 @@ to attempt a ping on the host specified and lets you access the results.
 
 Add this line to your application's Gemfile:
 
-    gem 'Pingly'
+    gem 'pingly'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install Pingly
+    $ gem install pingly
 
 ## Usage
 
@@ -24,7 +24,7 @@ Use the Pingly binary (optionally specifying a host to ping) to ping every 5 sec
 
 You can also use this in your code to test if a service is up:
 
-    require 'Pingly'
+    require 'pingly'
 
     # standard initialization
     p = Pingly.new('google.com')
