@@ -12,8 +12,12 @@ class Pinger
         yield if block_given?
       end
 
-      puts "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} - #{host}(#{p.ip_address}) - Sent: #{p.packets_sent} Received: #{p.packets_received} Loss: #{p.packet_loss}%"
+      puts p.response
     end
+  end
+
+  def self.ping!(host, timeout = 5)
+    new(host,timeout).ping!
   end
 
   def initialize(host, timeout = 5)
@@ -38,6 +42,10 @@ class Pinger
 
   def packets_received
     response_regex(/, (\d+) packets received/).to_i
+  end
+
+  def response
+    "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} - #{host}(#{p.ip_address}) - Sent: #{p.packets_sent} Received: #{p.packets_received} Loss: #{p.packet_loss}%"
   end
 
   private
