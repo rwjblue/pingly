@@ -45,7 +45,7 @@ class Pingly
   end
 
   def response
-    "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} - #{host}(#{p.ip_address}) - Sent: #{p.packets_sent} Received: #{p.packets_received} Loss: #{p.packet_loss}%"
+    "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} - #{host}(#{ip_address}) - Sent: #{packets_sent} Received: #{packets_received} Loss: #{packet_loss}%"
   end
 
   private
