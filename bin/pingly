@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(File.join('..','lib','pingly'), File.dirname(__FILE__))
+
+host = ARGV[0] || 'google.com'
+
+Pingly.ping_loop(host) do
+  `say 'LINK DOWN'`
+end

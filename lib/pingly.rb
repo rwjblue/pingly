@@ -1,4 +1,4 @@
-class Pinger
+class Pingly
   VERSION = '0.1.0'
 
   attr_accessor :host, :timeout, :raw_response
@@ -62,7 +62,7 @@ class Pinger
 end
 
 if __FILE__ == $0
-  Pinger.ping_loop('google.com') do
+  Pingly.ping_loop('google.com') do
     `say 'link down'`
   end
 end

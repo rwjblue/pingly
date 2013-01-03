@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'pinger'
+require 'pingly'
 
 Gem::Specification.new do |gem|
-  gem.name          = "pinger"
-  gem.version       = Pinger::VERSION
+  gem.name          = "pingly"
+  gem.version       = Pingly::VERSION
   gem.authors       = ["Jon Jackson", "Robert Jackson"]
   gem.email         = ["robertj@promedicalinc.com"]
   gem.description   = %q{Ping a specified host, logs the output, and calls a block on packet loss.}
   gem.summary       = %q{Ping a specified host.}
-  gem.homepage      = "https://github.com/rjackson/pinger"
+  gem.homepage      = "https://github.com/rjackson/Pingly"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

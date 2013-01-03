@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in pinger.gemspec
+# Specify your gem's dependencies in Pingly.gemspec
 gemspec

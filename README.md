@@ -1,6 +1,6 @@
-# Pinger
+# Pingly
 
-We built this to allow us to quickly know if our Internet connection had failed, but 
+We built this to allow us to quickly know if our Internet connection had failed, but
 we quickly realized it had many more possibilities. Uses your systems 'ping' command
 to attempt a ping on the host specified and lets you access the results.
 
@@ -8,7 +8,7 @@ to attempt a ping on the host specified and lets you access the results.
 
 Add this line to your application's Gemfile:
 
-    gem 'pinger'
+    gem 'Pingly'
 
 And then execute:
 
@@ -16,26 +16,26 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install pinger
+    $ gem install Pingly
 
 ## Usage
 
-Use the pinger binary (optionally specifying a host to ping) to ping every 5 seconds and log the output forever.
+Use the Pingly binary (optionally specifying a host to ping) to ping every 5 seconds and log the output forever.
 
 You can also use this in your code to test if a service is up:
 
-    require 'pinger'
+    require 'Pingly'
 
     # standard initialization
-    p = Pinger.new('google.com')
+    p = Pingly.new('google.com')
     p.ping!
 
     # quick/shortcut initialization (same as above)
-    p = Pinger.ping!('google.com')
+    p = Pingly.ping!('google.com')
 
     puts p.response #=> "2013-01-03 15:48:29 - google.com(74.125.139.102) - Sent: 5 Received: 5 Loss: 0.0%"
 
-One can call any of the following methods on an instance of Pinger to get various details of the ping attempt:
+One can call any of the following methods on an instance of Pingly to get various details of the ping attempt:
 
 * packet\_loss - Returns a float representing the packet loss.
 * ip\_address - Returns a string representing the IP Address that the system resolved the passed in host to.
