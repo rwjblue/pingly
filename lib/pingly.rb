@@ -8,7 +8,7 @@ class Pingly
       p = new(host)
       p.ping!
 
-      if p.packet_loss > 0.25
+      if p.packet_loss > 25
         yield if block_given?
       end
 
