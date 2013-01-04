@@ -1,16 +1,16 @@
-class Pingly
-  VERSION = '0.3.0'
+require 'open3'
 
-  attr_accessor :host, :timeout, :raw_response
+class Pingly
+  VERSION = '0.4.0'
+
+  attr_accessor :host, :timeout
 
   def self.ping_loop(host, timeout = 5)
     while true do
       p = new(host)
       p.ping!
 
-      if p.packet_loss > 25
-        yield if block_given?
-      end
+      yield if block_given? && !p.successful?
 
       puts p.response
     end
@@ -25,7 +25,7 @@ class Pingly
   end
 
   def ping!
-    self.raw_response = `#{build_ping_string}`
+    perform_ping
   end
 
   def packet_loss
@@ -45,14 +45,35 @@ class Pingly
   end
 
   def response
-    "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} - #{host}(#{ip_address}) - Sent: #{packets_sent} Received: #{packets_received} Loss: #{packet_loss}%"
+    "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')} - " + (successful? ? successful_response : failed_response)
+  end
+
+  def successful?
+    ping! unless ping_performed
+
+    response_status.success? && packet_loss < 25
   end
 
   private
 
+  attr_accessor :ping_performed, :response_stdout, :response_stderr, :response_status
+
+  def successful_response
+    "#{host}(#{ip_address}) - Sent: #{packets_sent} Received: #{packets_received} Loss: #{packet_loss}%"
+  end
+
+  def failed_response
+    response_stderr.to_s
+  end
+
+  def perform_ping
+    self.response_stdout, self.response_stderr, self.response_status = Open3.capture3(build_ping_string)
+    self.ping_performed = true
+  end
+
   def response_regex(regex)
-    ping! unless raw_response
-    raw_response =~ regex
+    ping! unless ping_performed
+    response_stdout =~ regex
     $1
   end
 
