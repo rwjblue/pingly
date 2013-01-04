@@ -1,7 +1,7 @@
 require 'open3'
 
 class Pingly
-  VERSION = '0.4.0'
+  VERSION = '0.5.0'
 
   attr_accessor :host, :timeout
 
@@ -63,7 +63,11 @@ class Pingly
   end
 
   def failed_response
-    response_stderr.to_s
+    if response_stderr.to_s.strip.empty?
+      successful_response
+    else
+      response_stderr.to_s
+    end
   end
 
   def perform_ping
