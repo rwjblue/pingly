@@ -1,5 +1,5 @@
 class Pingly
-  VERSION = '0.2.0'
+  VERSION = '0.3.0'
 
   attr_accessor :host, :timeout, :raw_response
 
