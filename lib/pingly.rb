@@ -82,7 +82,16 @@ class Pingly
   end
 
   def build_ping_string
-    "ping -t #{timeout} -q #{host}"
+    command =  ["ping"]
+    command += case RbConfig::CONFIG['host_os']
+               when /bsd|osx|darwin/i
+                 %W[-t #{timeout}]
+               when /linux/i
+                 %W[-w #{timeout}]
+               end
+    command << host
+
+    command.join(' ')
   end
 end
 
