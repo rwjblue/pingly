@@ -1,7 +1,7 @@
 require 'open3'
 
 class Pingly
-  VERSION = '0.5.0'
+  VERSION = '0.6.0'
 
   attr_accessor :host, :timeout
 
