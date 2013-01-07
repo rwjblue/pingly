@@ -41,7 +41,7 @@ class Pingly
   end
 
   def packets_received
-    response_regex(/, (\d+) packets received/).to_i
+    response_regex(/, (\d+)(?: packets)? received/).to_i
   end
 
   def response
