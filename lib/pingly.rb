@@ -1,7 +1,8 @@
 require 'open3'
+require 'rbconfig'
 
 class Pingly
-  VERSION = '0.6.0'
+  VERSION = '0.6.1'
 
   attr_accessor :host, :timeout
 
